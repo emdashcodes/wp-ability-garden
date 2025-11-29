@@ -7,6 +7,7 @@ This file provides guidance to Claude Code when working with this repository.
 **WordPress Ability Garden** is an autonomous agent experiment focused on building WordPress Abilities — tools that extend what AI assistants can do inside wp-admin.
 
 The project has two parts:
+
 - **`agent/`**: Python harness that orchestrates autonomous agents using the Claude Agent SDK
 - **`wp-content/plugins/wp-ability-toolkit/`**: The ability infrastructure and chat widget
 
@@ -64,6 +65,7 @@ Skill("mermaid-diagram-to-image")  # Create architecture diagrams
 **wp-env** provides wp-env configuration and WP-CLI command reference.
 
 **wordpress-ability-api** provides:
+
 - Scaffolding scripts for new abilities
 - Templates for server and client abilities
 - Validation scripts
@@ -74,6 +76,7 @@ Skill("mermaid-diagram-to-image")  # Create architecture diagrams
 Check `site/component_log.json` for the current list of abilities.
 
 Built-in abilities in wp-ability-toolkit:
+
 - `wp-ability-toolkit/create-ability` — Helps brainstorm new abilities
 - `wp-ability-toolkit/content-review` — Reviews content for promotion
 - `wp-ability-toolkit/navigate` — Navigates to admin pages
@@ -115,6 +118,7 @@ mcp__puppeteer__puppeteer_type → Send messages
 ## WordPress Coding Standards
 
 For PHP abilities:
+
 - Escape output: `esc_html()`, `esc_attr()`, `esc_url()`
 - Sanitize input: `sanitize_text_field()`, `wp_kses_post()`
 - Use proper capability checks

@@ -24,3 +24,6 @@ wp-content/plugins/wp-ability-toolkit/build/
 
 # Uploads (generated content)
 wp-content/uploads/
+
+# Debug log
+wp-content/debug.log

@@ -12,7 +12,8 @@
   },
   "mappings": {
     "wp-content/plugins": "./wp-content/plugins",
-    "wp-content/uploads": "./wp-content/uploads"
+    "wp-content/uploads": "./wp-content/uploads",
+    "wp-content/debug.log": "./wp-content/debug.log"
   },
   "env": {
     "tests": {

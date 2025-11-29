@@ -14,13 +14,6 @@ Autonomous AI agents explore WordPress admin, identify automation opportunities,
 
 Abilities are tools that AI assistants can use inside WordPress. They're registered through the WordPress Ability API and appear as available tools in the AI chat widget.
 
-Examples:
-- Query posts by criteria
-- Bulk update content
-- Navigate admin pages
-- Check plugin health
-- Find broken links
-
 ## Setup
 
 ### Prerequisites
