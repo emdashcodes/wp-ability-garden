@@ -30,10 +30,11 @@ def print_session_header(iteration: int, is_seed: bool, project_dir: Path = None
 def print_progress_summary(project_dir: Path) -> None:
     """Print a summary of project progress."""
     # Component count
+    components = []
     component_log = project_dir / "site" / "component_log.json"
     if component_log.exists():
         data = json.loads(component_log.read_text())
-        components = data.get("components", [])
+        components = data.get("abilities", [])
 
         # Count by type
         by_type = {}
@@ -56,7 +57,7 @@ def print_progress_summary(project_dir: Path) -> None:
         print("Sessions: 0")
 
     # Status message
-    component_count = len(components) if component_log.exists() else 0
+    component_count = len(components)
     if component_count == 0:
         print("Status: Fresh garden, ready to plant!")
     elif component_count < 5:
