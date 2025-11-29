@@ -22,6 +22,9 @@ agent/venv/
 # Build outputs
 wp-content/plugins/wp-ability-toolkit/build/
 
+# External plugins (pulled by wp-env)
+wp-content/plugins/gutenberg/
+
 # Uploads (generated content)
 wp-content/uploads/
 

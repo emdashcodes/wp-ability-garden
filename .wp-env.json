@@ -2,7 +2,7 @@
   "core": "WordPress/WordPress#6.7",
   "phpVersion": "8.2",
   "plugins": [
-    "./wp-content/plugins/gutenberg",
+    "https://downloads.wordpress.org/plugin/gutenberg.latest-stable.zip",
     "./wp-content/plugins/wp-ability-toolkit"
   ],
   "config": {
