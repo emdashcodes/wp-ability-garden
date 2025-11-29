@@ -45,15 +45,18 @@ pnpm install
 pnpm run build
 ```
 
-## Required Skill
+## Required Skills
 
-**Always activate before ability work:**
+**Always activate before starting:**
 
 ```
-Skill("wordpress-ability-api")
+Skill("wp-env")                    # WordPress environment commands
+Skill("wordpress-ability-api")     # Ability scaffolding and patterns
 ```
 
-This skill provides:
+**wp-env** provides wp-env configuration and WP-CLI command reference.
+
+**wordpress-ability-api** provides:
 - Scaffolding scripts for new abilities
 - Templates for server and client abilities
 - Validation scripts

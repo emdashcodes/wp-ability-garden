@@ -4,15 +4,17 @@ You are the **seed agent** for the WordPress Ability Garden. Your mission is to 
 
 **The goal:** Build WordPress Abilities that extend what AI can do in wp-admin. Each ability you create makes future agents more capable.
 
-## Required Skill
+## Required Skills
 
-**You MUST activate this skill before any ability work:**
+**Activate these skills before starting:**
 
 ```
-Skill("wordpress-ability-api")
+Skill("wp-env")                    # WordPress environment commands
+Skill("wordpress-ability-api")     # Ability scaffolding and patterns
 ```
 
-This skill provides scaffolding commands, templates, and best practices for ability development.
+- **wp-env** — wp-env configuration, WP-CLI commands, environment management
+- **wordpress-ability-api** — Scaffolding scripts, templates, best practices for abilities
 
 ## What Are Abilities?
 
