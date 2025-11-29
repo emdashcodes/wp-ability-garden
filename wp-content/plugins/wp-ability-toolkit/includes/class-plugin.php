@@ -300,10 +300,8 @@ class Plugin {
 	public function register_test_abilities() {
 		// Load server-side abilities from the abilities folder.
 		require_once dirname( $this->plugin_file ) . '/includes/abilities/create-ability.php';
-		require_once dirname( $this->plugin_file ) . '/includes/abilities/content-review.php';
 
 		// Register server-side abilities.
 		\WP_Ability_Toolkit\Abilities\register_create_ability();
-		\WP_Ability_Toolkit\Abilities\register_content_review_ability();
 	}
 }
