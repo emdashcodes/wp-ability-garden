@@ -83,6 +83,20 @@
         "destructive": false,
         "idempotent": true
       }
+    },
+    {
+      "id": 7,
+      "name": "garden-abilities/media-library-summary",
+      "type": "server",
+      "category": "site",
+      "description": "Retrieves a summary of the WordPress media library including counts by type, storage estimates, recent uploads, and accessibility issues like missing alt text. Use for content audits and helping AI agents find existing media assets.",
+      "file": "wp-content/plugins/garden-abilities/includes/abilities/media-library-summary.php",
+      "added_by_session": 7,
+      "annotations": {
+        "readonly": true,
+        "destructive": false,
+        "idempotent": true
+      }
     }
   ]
 }
