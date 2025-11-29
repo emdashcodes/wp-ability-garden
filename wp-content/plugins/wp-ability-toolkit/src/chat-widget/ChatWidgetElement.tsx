@@ -23,8 +23,8 @@ export class ChatWidgetElement extends HTMLElement {
 
 	constructor() {
 		super();
-		// Create Shadow DOM for complete encapsulation
-		this.shadow = this.attachShadow({ mode: 'closed' });
+		// Create Shadow DOM for style isolation (open mode allows testing via Puppeteer)
+		this.shadow = this.attachShadow({ mode: 'open' });
 	}
 
 	async connectedCallback() {

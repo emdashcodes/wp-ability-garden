@@ -3,9 +3,9 @@
     {
       "id": 1,
       "started_at": "2025-11-29T20:58:36.967277+00:00",
-      "ended_at": "2025-11-29T21:10:00.000000+00:00",
+      "ended_at": "2025-11-29T21:10:25.308931+00:00",
       "type": "seed",
-      "duration_seconds": 684,
+      "duration_seconds": 708,
       "agent_report": {
         "ability_built": "garden-abilities/list-posts",
         "ability_type": "server",
@@ -25,6 +25,14 @@
         ],
         "session_post_id": 12
       }
+    },
+    {
+      "id": 2,
+      "started_at": "2025-11-29T21:10:30.779809+00:00",
+      "ended_at": null,
+      "type": "contributor",
+      "duration_seconds": null,
+      "agent_report": null
     }
   ]
 }

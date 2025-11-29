@@ -13,6 +13,20 @@
         "destructive": false,
         "idempotent": true
       }
+    },
+    {
+      "id": 2,
+      "name": "garden-abilities/site-health-status",
+      "type": "server",
+      "category": "site",
+      "description": "Retrieves the WordPress Site Health status including critical issues, recommended improvements, and passed tests. Enables AI assistants to proactively diagnose site problems and surface security/performance concerns.",
+      "file": "wp-content/plugins/garden-abilities/includes/abilities/site-health-status.php",
+      "added_by_session": 2,
+      "annotations": {
+        "readonly": true,
+        "destructive": false,
+        "idempotent": true
+      }
     }
   ]
 }
