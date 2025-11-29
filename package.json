@@ -1,0 +1,14 @@
+{
+  "name": "wp-ability-garden",
+  "version": "1.0.0",
+  "description": "Autonomous agent experiment for building WordPress Abilities",
+  "scripts": {
+    "start": "wp-env start",
+    "stop": "wp-env stop",
+    "clean": "wp-env clean",
+    "logs": "wp-env logs"
+  },
+  "devDependencies": {
+    "@wordpress/env": "^10.0.0"
+  }
+}

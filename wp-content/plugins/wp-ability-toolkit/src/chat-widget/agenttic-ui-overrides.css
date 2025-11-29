@@ -1,0 +1,280 @@
+/**
+ * AgenticUI Overrides
+ * Minimal, clean fixes for @automattic/agenttic-ui integration
+ */
+
+/* ========================================
+ * Message Spacing
+ * ======================================== */
+
+[class*='Message-module_message'],
+[class*='message'] {
+	margin-bottom: 8px !important;
+}
+
+/* ========================================
+ * Tool Call Width Constraints
+ * Prevent horizontal overflow from tool call components
+ * ======================================== */
+
+/* Constrain message content areas */
+.agentui-message-content,
+.agentui-message-content > *,
+[class*='message'] [class*='content'],
+[class*='Message'] [class*='Content'] {
+	max-width: 100% !important;
+	min-width: 0 !important;
+	overflow-wrap: break-word !important;
+}
+
+/* Ensure all flex containers allow shrinking */
+[class*='message'] {
+	min-width: 0 !important;
+}
+
+/* Force tool call wrapper to respect container */
+.tool-call-wrapper {
+	max-width: 100% !important;
+	width: 100% !important;
+	min-width: 0 !important;
+	box-sizing: border-box !important;
+}
+
+/* Prevent pre/code blocks from overflowing */
+pre,
+code {
+	max-width: 100% !important;
+	overflow-x: auto !important;
+	white-space: pre !important;
+	box-sizing: border-box !important;
+}
+
+/* ========================================
+ * Code Block Copy Button
+ * Hover-visible copy button for code blocks
+ * ======================================== */
+
+pre {
+	position: relative !important;
+}
+
+.code-block-copy-btn {
+	position: absolute !important;
+	top: 8px !important;
+	right: 8px !important;
+	background: rgba(0, 0, 0, 0.6) !important;
+	border: 1px solid rgba(255, 255, 255, 0.2) !important;
+	border-radius: 4px !important;
+	padding: 4px 8px !important;
+	cursor: pointer !important;
+	opacity: 0 !important;
+	transition: opacity 0.2s ease !important;
+	color: #fff !important;
+	font-size: 12px !important;
+	display: flex !important;
+	align-items: center !important;
+	gap: 4px !important;
+	z-index: 10 !important;
+}
+
+pre:hover .code-block-copy-btn {
+	opacity: 1 !important;
+}
+
+.code-block-copy-btn:hover {
+	background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.code-block-copy-btn svg {
+	width: 14px !important;
+	height: 14px !important;
+	fill: currentColor !important;
+}
+
+.code-block-copy-btn.copied {
+	background: rgba(0, 163, 42, 0.8) !important;
+	border-color: rgba(0, 163, 42, 0.4) !important;
+}
+
+.code-block-copy-btn.copied svg {
+	width: 16px !important;
+	height: 16px !important;
+}
+
+/* ========================================
+ * Cursor Behavior
+ * Restrict grab cursor to header only
+ * ======================================== */
+
+/* Remove grab cursor from floating chat container */
+[class*='Chat-module_container'][class*='Chat-module_floating'] {
+	cursor: auto !important;
+}
+
+[class*='Chat-module_container'][class*='Chat-module_floating']:active {
+	cursor: auto !important;
+}
+
+/* Keep grab cursor only on header */
+[class*='ChatHeader-module_container'] {
+	cursor: grab !important;
+}
+
+[class*='ChatHeader-module_container']:active {
+	cursor: grabbing !important;
+}
+
+/* Ensure normal cursor on interactive content */
+[class*='Messages-module_container'],
+[class*='Message-module_message'],
+[class*='ChatFooter-module_container'],
+[class*='ChatInput-module_container'],
+[class*='MessageActions-module_container'],
+button,
+a,
+[role='button'] {
+	cursor: auto !important;
+}
+
+button:not(:disabled),
+a,
+[role='button']:not([aria-disabled='true']) {
+	cursor: pointer !important;
+}
+
+/* ========================================
+ * Message Actions Icon Sizing
+ * ======================================== */
+
+/* Allow message action icons to use component-defined sizes */
+[class*='MessageActions'] svg,
+[class*='MessageAction'] svg,
+[class*='message-actions'] svg {
+	width: auto !important;
+	height: auto !important;
+	max-width: none !important;
+	max-height: none !important;
+}
+
+/* Fix icon sizing in tool calls */
+.tool-call-wrapper svg,
+.tool-call-header svg,
+.tool-call-body svg {
+	width: 18px !important;
+	height: 18px !important;
+	min-width: 18px !important;
+	min-height: 18px !important;
+	max-width: 18px !important;
+	max-height: 18px !important;
+}
+
+/* ========================================
+ * Custom Chat Header
+ * ======================================== */
+
+.wp-ability-toolkit-chat-header {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	padding: 8px;
+	gap: 4px;
+	flex-shrink: 0;
+}
+
+.wp-ability-toolkit-chat-header button {
+	min-width: 28px !important;
+	width: 28px !important;
+	height: 28px !important;
+	padding: 4px !important;
+	background: none !important;
+	border: none !important;
+	opacity: 0.7;
+	transition: opacity 0.2s ease;
+}
+
+.wp-ability-toolkit-chat-header button:hover {
+	opacity: 1 !important;
+	background: none !important;
+}
+
+.wp-ability-toolkit-chat-header button svg {
+	width: 20px !important;
+	height: 20px !important;
+}
+
+/* Ensure conversation view layout works with custom header */
+[data-slot="conversation-view"] {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+[data-slot="conversation-view"].with-custom-header {
+	justify-content: space-between;
+}
+
+.conversation-content {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	min-height: 0;
+	justify-content: flex-end;
+}
+
+/* ========================================
+ * WordPress Snackbar Positioning
+ * ======================================== */
+
+.components-snackbar-list {
+	position: fixed !important;
+	bottom: 100px !important;
+	right: 30px !important;
+	z-index: 99999999 !important;
+	pointer-events: none !important;
+}
+
+.components-snackbar {
+	position: relative !important;
+	margin: 0 !important;
+	pointer-events: auto !important;
+	background: #1e1e1e !important;
+	color: #fff !important;
+	border-radius: 4px !important;
+	box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4) !important;
+	padding: 12px 16px !important;
+	font-size: 13px !important;
+	font-weight: 500 !important;
+	animation: slideInSnackbar 0.2s ease-out !important;
+}
+
+.components-snackbar__content {
+	margin: 0 !important;
+	padding: 0 !important;
+	color: #fff !important;
+}
+
+.components-snackbar__content-wrapper {
+	display: flex !important;
+	align-items: center !important;
+	gap: 8px !important;
+}
+
+.components-snackbar__dismiss-button {
+	background: transparent !important;
+	border: none !important;
+	color: #fff !important;
+	cursor: pointer !important;
+	padding: 4px !important;
+	margin-left: 8px !important;
+}
+
+@keyframes slideInSnackbar {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

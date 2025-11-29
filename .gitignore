@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# wp-env
+.wp-env/
+
+# Python
+__pycache__/
+*.pyc
+agent/venv/
+
+# OS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+
+# Build outputs
+wp-content/plugins/wp-ability-toolkit/build/
+
+# Uploads (generated content)
+wp-content/uploads/

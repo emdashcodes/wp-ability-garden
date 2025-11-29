@@ -1,0 +1,22 @@
+{
+  "core": "WordPress/WordPress#6.7",
+  "phpVersion": "8.2",
+  "plugins": [
+    "./wp-content/plugins/gutenberg",
+    "./wp-content/plugins/wp-ability-toolkit"
+  ],
+  "config": {
+    "WP_DEBUG": true,
+    "WP_DEBUG_LOG": true,
+    "SCRIPT_DEBUG": true
+  },
+  "mappings": {
+    "wp-content/plugins": "./wp-content/plugins",
+    "wp-content/uploads": "./wp-content/uploads"
+  },
+  "env": {
+    "tests": {
+      "phpVersion": "8.2"
+    }
+  }
+}

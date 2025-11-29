@@ -1,0 +1,26 @@
+{
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"module": "esnext",
+		"target": "es2015",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"baseUrl": ".",
+		"paths": {
+			"@wordpress/abilities": ["vendor/wordpress/abilities-api/packages/client/build-types"],
+			"@wordpress/*": ["../../node_modules/@wordpress/*/src"],
+			"*": ["node_modules/*"]
+		}
+	},
+	"include": ["src/**/*"],
+	"exclude": ["node_modules", "build"]
+}
