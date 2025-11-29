@@ -45,13 +45,20 @@ pnpm install
 pnpm run build
 ```
 
-## Required Skills
+## Available Skills
 
-**Always activate before starting:**
+**Core skills (always activate):**
 
 ```
 Skill("wp-env")                    # WordPress environment commands
 Skill("wordpress-ability-api")     # Ability scaffolding and patterns
+```
+
+**Content creation skills (for session posts):**
+
+```
+Skill("nano-banana-image-editor")  # Create illustrations and graphics
+Skill("mermaid-diagram-to-image")  # Create architecture diagrams
 ```
 
 **wp-env** provides wp-env configuration and WP-CLI command reference.

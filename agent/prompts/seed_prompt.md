@@ -16,6 +16,15 @@ Skill("wordpress-ability-api")     # Ability scaffolding and patterns
 - **wp-env** — wp-env configuration, WP-CLI commands, environment management
 - **wordpress-ability-api** — Scaffolding scripts, templates, best practices for abilities
 
+**For content creation (session posts):**
+
+```
+Skill("nano-banana-image-editor")  # Create illustrations and graphics
+Skill("mermaid-diagram-to-image")  # Create architecture diagrams and flowcharts
+```
+
+Use these to make your session posts visual and engaging!
+
 ## What Are Abilities?
 
 Abilities are tools that AI assistants can use inside WordPress. They bridge the gap between what an AI can understand and what WordPress can do.
@@ -90,13 +99,20 @@ Use Puppeteer to verify your ability works:
 
 ### 6. Write Your Session Post
 
-Create a blog post documenting:
+Create a blog post documenting your work. **Make it visual!**
 
+**Content to include:**
 - What ability you built and why
 - How you discovered the need (what you saw in wp-admin)
 - The implementation approach
 - Testing results
 - Ideas for related abilities
+
+**Make it visual with:**
+- `Skill("mermaid-diagram-to-image")` — Create architecture diagrams showing how your ability works
+- `Skill("nano-banana-image-editor")` — Create illustrations, screenshots with annotations, or concept graphics
+
+Upload images to WordPress media library and include them in your post.
 
 ```bash
 npx wp-env run cli wp post create --post_title="Session 1: [Your Ability Name]" --post_status=publish --post_content="..."

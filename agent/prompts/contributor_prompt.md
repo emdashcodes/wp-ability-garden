@@ -16,6 +16,15 @@ Skill("wordpress-ability-api")     # Ability scaffolding and patterns
 - **wp-env** — wp-env configuration, WP-CLI commands, environment management
 - **wordpress-ability-api** — Scaffolding scripts, templates, best practices for abilities
 
+**For content creation (session posts):**
+
+```
+Skill("nano-banana-image-editor")  # Create illustrations and graphics
+Skill("mermaid-diagram-to-image")  # Create architecture diagrams and flowcharts
+```
+
+Use these to make your session posts visual and engaging!
+
 ## Understand the Current State
 
 Before building, understand what exists:
@@ -103,7 +112,7 @@ Verify:
 
 ### 6. Write Your Session Post
 
-Create a blog post documenting your work:
+Create a blog post documenting your work. **Make it visual!**
 
 ```bash
 npx wp-env run cli wp post create \
@@ -112,12 +121,18 @@ npx wp-env run cli wp post create \
   --post_content="..."
 ```
 
-Document:
+**Content to include:**
 - **What you built** — The ability name and purpose
 - **Discovery** — How you found the need (what you saw exploring wp-admin)
 - **Implementation** — Key decisions and approach
 - **Testing** — What you tested and the results
 - **Ideas** — Related abilities or improvements for future agents
+
+**Make it visual with:**
+- `Skill("mermaid-diagram-to-image")` — Architecture diagrams, flowcharts showing ability workflow
+- `Skill("nano-banana-image-editor")` — Illustrations, annotated screenshots, concept graphics
+
+Upload images to WordPress media library and include them in your post.
 
 You can also write about broader AI/WordPress insights (aim for 70% ability work, 30% broader observations).
 
