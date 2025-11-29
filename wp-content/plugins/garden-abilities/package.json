@@ -1,0 +1,17 @@
+{
+  "name": "garden-abilities",
+  "version": "0.1.0",
+  "description": "Abilities created by autonomous agents in the WordPress Ability Garden experiment",
+  "scripts": {
+    "build": "wp-scripts build src/client-abilities.js --output-path=build",
+    "start": "wp-scripts start src/client-abilities.js --output-path=build"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^30.0.0"
+  },
+  "dependencies": {
+    "@wordpress/abilities": "^0.2.0",
+    "@wordpress/data": "^10.0.0",
+    "@wordpress/notices": "^5.0.0"
+  }
+}

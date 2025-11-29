@@ -12,7 +12,22 @@ Autonomous AI agents explore WordPress admin, identify automation opportunities,
 
 ## What Are Abilities?
 
-Abilities are tools that AI assistants can use inside WordPress. They're registered through the WordPress Ability API and appear as available tools in the AI chat widget.
+Abilities are tools that AI assistants can use inside WordPress. WordPress 6.9 includes the native **Abilities API** (`@wordpress/abilities` npm package). Abilities are registered and appear as available tools in the AI chat widget.
+
+## Environment
+
+| Component | Version/Details |
+|-----------|-----------------|
+| WordPress | 6.9 (native Abilities API) |
+| PHP | 8.2 |
+| Gutenberg | Latest stable |
+| WooCommerce | Trunk (built from source) |
+| Jetpack | Latest stable |
+| wp-ability-toolkit | Local plugin with chat widget |
+
+**URLs:**
+- Local: http://localhost:8888
+- Public: https://ability-garden.emdashcodes.dev (via Cloudflare Tunnel)
 
 ## Setup
 
@@ -20,16 +35,40 @@ Abilities are tools that AI assistants can use inside WordPress. They're registe
 
 - Docker (for wp-env)
 - Node.js 18+
+- pnpm
 - Python 3.11+ (for agent harness)
-- An Anthropic API key
 
-### API Key
+### API Keys
 
-Set your Anthropic API key:
+The agent requires three API keys:
+
+**1. Anthropic (required)**
 
 ```bash
 export ANTHROPIC_API_KEY="your-key-here"
 ```
+
+**2. Perplexity (for web search)**
+
+Create `agent/.env`:
+
+```bash
+cp agent/.env.example agent/.env
+# Edit agent/.env and add your Perplexity API key
+```
+
+**3. Gemini (for image generation via nano-banana skill)**
+
+```bash
+# Install dependencies first
+.claude/skills/nano-banana-image-editor/scripts/install_dependencies.sh
+
+# Set up the API key
+.claude/skills/nano-banana-image-editor/.venv/bin/python3 \
+  .claude/skills/nano-banana-image-editor/scripts/setup-gemini-token.py YOUR_GEMINI_API_KEY
+```
+
+Get a Gemini API key from [Google AI Studio](https://aistudio.google.com/app/apikey).
 
 ### Install Dependencies
 
@@ -57,7 +96,29 @@ cd ..
 ./init.sh
 ```
 
+This will:
+- Clone and build WooCommerce from trunk (first run only)
+- Start wp-env with all plugins
+- Activate plugins
+
 Visit http://localhost:8888/wp-admin/ (admin/password)
+
+### Cloudflare Tunnel (Optional)
+
+For Jetpack connectivity or external webhook testing, use the Cloudflare Tunnel:
+
+```bash
+cloudflared tunnel run ability-garden
+```
+
+Then update WordPress URLs:
+
+```bash
+npx wp-env run cli wp option update siteurl 'https://ability-garden.emdashcodes.dev'
+npx wp-env run cli wp option update home 'https://ability-garden.emdashcodes.dev'
+```
+
+See `docs/cloudflare-tunnel.md` for full setup instructions.
 
 ## Running the Agent
 
@@ -79,21 +140,29 @@ wp-ability-garden/
 ├── agent/                      # Python harness for autonomous agents
 │   ├── autonomous_agent.py     # Entry point
 │   ├── agent.py                # Session loop
+│   ├── client.py               # Claude SDK client config
+│   ├── security.py             # Bash allowlist + WP-CLI validation
 │   ├── prompts/                # Agent instructions
 │   │   ├── seed_prompt.md      # First agent
 │   │   └── contributor_prompt.md
-│   └── ...
+│   ├── .env                    # API keys (gitignored)
+│   └── .env.example            # Template for .env
 ├── wp-content/
 │   └── plugins/
 │       ├── wp-ability-toolkit/ # Ability infrastructure + chat widget
-│       └── gutenberg/          # Gutenberg development plugin
+│       └── garden-abilities/   # Abilities created by agents
 ├── site/
 │   ├── session_log.json        # Agent session history
-│   ├── component_log.json      # Abilities registry
-│   └── database.sql            # Persisted database
+│   └── component_log.json      # Abilities registry
+├── docs/
+│   └── cloudflare-tunnel.md    # Tunnel setup guide
 ├── .claude/
+│   ├── .nano-banana-config.json # Gemini API key (gitignored)
 │   └── skills/
-│       └── wordpress-ability-api/  # Skill for building abilities
+│       ├── wordpress-ability-api/    # Ability scaffolding
+│       ├── wp-env/                   # WordPress environment commands
+│       ├── nano-banana-image-editor/ # Image generation
+│       └── mermaid-diagram-to-image/ # Diagram generation
 ├── init.sh                     # Environment setup script
 └── .wp-env.json                # WordPress environment config
 ```

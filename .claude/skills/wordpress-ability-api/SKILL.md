@@ -396,6 +396,74 @@ When helping users create abilities:
 6. **Handle errors gracefully**: Return `WP_Error` objects with clear error messages
 7. **Test thoroughly**: Verify schema validation, permissions, and error cases
 
+## Common Pitfalls
+
+**Read this before creating abilities!**
+
+### 1. Category Must Exist Before Registration
+
+`wp_register_ability()` returns `null` silently if the category doesn't exist.
+
+**Fix:** Check available categories first via `/wp-abilities/v1/categories` endpoint, then use an existing one or register your own on `wp_abilities_api_categories_init`.
+
+### 2. Callback Functions Must Accept Zero Arguments
+
+WordPress calls callbacks without arguments when there's no input. Required parameters cause `ArgumentCountError`.
+
+```php
+// BAD
+function my_callback( $input ) { ... }
+'permission_callback' => function( $input ) { return true; }
+
+// GOOD
+function my_callback() { ... }
+'permission_callback' => function() { return is_user_logged_in(); }
+```
+
+### 3. REST API Route is `/run`, Not `/execute`
+
+```bash
+# WRONG - 404
+curl '.../wp-abilities/v1/abilities/plugin/ability/execute'
+
+# CORRECT
+curl '.../wp-abilities/v1/abilities/plugin/ability/run'
+```
+
+### 4. Readonly Abilities Require GET, Not POST
+
+Abilities with `annotations.readonly: true` must use GET requests. Others use POST.
+
+### 5. Pretty Permalinks Require .htaccess in wp-env
+
+If `/wp-json/` returns 404, the .htaccess file is missing. Create it:
+
+```bash
+npx wp-env run cli -- bash -c 'cat > /var/www/html/.htaccess << "EOF"
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress
+EOF'
+npx wp-env run cli wp rewrite flush --hard
+```
+
+Fallback: use `?rest_route=/path` format instead of `/wp-json/path`.
+
+### 6. Debugging Failed Executions
+
+1. Check Docker logs: `docker logs <container-id> 2>&1 | grep -i error`
+2. Verify category exists via API
+3. Check callback signature (see #2)
+4. Verify `show_in_rest: true` in meta
+
 ## Common Patterns
 
 ### Read-Only Data Retrieval

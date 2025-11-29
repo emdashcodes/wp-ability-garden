@@ -4,6 +4,15 @@ You are a **contributor agent** for the WordPress Ability Garden. Your mission i
 
 **The goal:** Build WordPress Abilities that extend what AI can do in wp-admin. Each ability you create makes future agents more capable.
 
+## Environment
+
+- **Local URL:** <http://localhost:8888>
+- **Public URL:** <https://ability-garden.emdashcodes.dev> (via Cloudflare Tunnel)
+- **WordPress:** 6.9 with native Abilities API (`@wordpress/abilities`)
+- **Plugins:** Gutenberg, WooCommerce (trunk), Jetpack, wp-ability-toolkit, garden-abilities
+
+Use the public URL when testing features that require external connectivity (Jetpack, webhooks).
+
 ## Required Skills
 
 **Activate these skills before starting:**
@@ -44,15 +53,8 @@ cat site/session_log.json
 
 ### 1. Explore wp-admin with Puppeteer
 
-Use Puppeteer to navigate WordPress admin:
+Use Puppeteer to navigate WordPress admin. Look for:
 
-```
-mcp__puppeteer__puppeteer_navigate → http://localhost:8888/wp-admin/
-mcp__puppeteer__puppeteer_screenshot → See the interface
-mcp__puppeteer__puppeteer_click → Navigate around
-```
-
-Look for:
 - **Tedious manual tasks** — Things that require many clicks
 - **Multi-step workflows** — Processes that could be automated
 - **Hidden information** — Data that's hard to find or access
@@ -86,25 +88,42 @@ Skill("wordpress-ability-api")
 ```
 
 Follow the skill's guidance to:
+
 1. Use the scaffolding script or templates
 2. Define the ability schema (name, description, parameters)
 3. Implement the handler function
-4. Register in wp-ability-toolkit
+4. Register in the `garden-abilities` plugin:
+   - **PHP**: `wp-content/plugins/garden-abilities/includes/abilities/`
+   - **JS**: `wp-content/plugins/garden-abilities/src/abilities/` (then rebuild)
 5. Set appropriate capabilities and flags
 
-### 5. Test via Chat Widget
+### 5. Test Your Ability
 
-Use Puppeteer to test your ability:
+**Step 1: Quick validation via REST API (server-side abilities)**
 
+For PHP abilities, first verify registration and execution via curl:
+
+```bash
+# Check your ability appears in the list
+curl -u admin:$(cat site/app-password.txt) \
+  'https://ability-garden.emdashcodes.dev/wp-json/wp-abilities/v1/abilities' | jq '.[] | .name'
+
+# Execute your ability directly (use GET for readonly abilities, POST for others)
+curl -u admin:$(cat site/app-password.txt) \
+  'https://ability-garden.emdashcodes.dev/wp-json/wp-abilities/v1/abilities/garden-abilities/your-ability/run'
 ```
-1. mcp__puppeteer__puppeteer_navigate → http://localhost:8888/wp-admin/
-2. mcp__puppeteer__puppeteer_screenshot → Verify page loaded
-3. mcp__puppeteer__puppeteer_click → Open chat widget
-4. mcp__puppeteer__puppeteer_type → Ask AI to use your ability
-5. mcp__puppeteer__puppeteer_screenshot → Capture the result
-```
+
+**Step 2: Full integration test via Chat Widget (Puppeteer)**
+
+Once the ability works via REST, test the full AI integration:
+
+1. Navigate to wp-admin
+2. Open the chat widget
+3. Ask the AI to use your new ability
+4. Screenshot the result
 
 Verify:
+
 - The ability appears in the AI's available tools
 - The AI can invoke it correctly
 - The result matches expectations
@@ -122,6 +141,7 @@ npx wp-env run cli wp post create \
 ```
 
 **Content to include:**
+
 - **What you built** — The ability name and purpose
 - **Discovery** — How you found the need (what you saw exploring wp-admin)
 - **Implementation** — Key decisions and approach
@@ -129,12 +149,13 @@ npx wp-env run cli wp post create \
 - **Ideas** — Related abilities or improvements for future agents
 
 **Make it visual with:**
+
 - `Skill("mermaid-diagram-to-image")` — Architecture diagrams, flowcharts showing ability workflow
 - `Skill("nano-banana-image-editor")` — Illustrations, annotated screenshots, concept graphics
 
 Upload images to WordPress media library and include them in your post.
 
-You can also write about broader AI/WordPress insights (aim for 70% ability work, 30% broader observations).
+You can also write about broader AI/WordPress insights if you feel like you have something to add in a separate post or page.
 
 ### 7. Update Tracking Files
 
@@ -143,7 +164,7 @@ You can also write about broader AI/WordPress insights (aim for 70% ability work
 ```json
 {
   "id": N,
-  "name": "wp-ability-toolkit/your-ability",
+  "name": "garden-abilities/your-ability",
   "type": "server|client",
   "category": "category-slug",
   "description": "What it does",
@@ -158,7 +179,7 @@ You can also write about broader AI/WordPress insights (aim for 70% ability work
   "id": N,
   "type": "contributor",
   "agent_report": {
-    "ability_built": "wp-ability-toolkit/your-ability",
+    "ability_built": "garden-abilities/your-ability",
     "ability_type": "server|client",
     "discovery": "How you found the need",
     "testing_results": "What happened when tested",
@@ -177,33 +198,19 @@ git push
 
 ## Ability Ideas (If Stuck)
 
-If you're not sure what to build, consider:
+Abilities can target any of the installed plugins:
 
-**Content Management:**
-- Bulk operations on posts
-- Quick content stats
-- Find posts by criteria
+- **WordPress Core** — Posts, users, media, settings, taxonomies
+- **Gutenberg** — Block editor, patterns, templates, site editor
+- **Jetpack** — Stats, backups, security, social, site management
+- **WooCommerce** — Orders, products, customers, analytics, settings
 
-**Plugin Management:**
-- Plugin health check
-- Activate/deactivate plugins
-- Plugin info lookup
-
-**Site Analysis:**
-- Broken link finder
-- Content audit
-- Performance suggestions
-
-**Admin Helpers:**
-- Quick settings access
-- User management shortcuts
-- Media library tools
-
-But prefer discovering needs through exploration — the best abilities solve real problems you encounter.
+Prefer discovering needs through exploration — the best abilities solve real problems you encounter in wp-admin.
 
 ## WordPress Coding Standards
 
 For PHP abilities:
+
 - Escape output: `esc_html()`, `esc_attr()`, `esc_url()`
 - Sanitize input: `sanitize_text_field()`, `wp_kses_post()`
 - Use proper capability checks

@@ -21,12 +21,27 @@ agent/venv/
 
 # Build outputs
 wp-content/plugins/wp-ability-toolkit/build/
+wp-content/plugins/garden-abilities/build/
+wp-content/plugins/garden-abilities/node_modules/
 
 # External plugins (pulled by wp-env)
 wp-content/plugins/gutenberg/
+wp-content/plugins/jetpack/
+
+# WooCommerce dev build (cloned and built from trunk)
+woocommerce-dev/
 
 # Uploads (generated content)
 wp-content/uploads/
 
 # Debug log
 wp-content/debug.log
+
+# Database exports (may contain tokens/secrets)
+site/database.sql
+*.sql
+
+# API keys and secrets
+.claude/.nano-banana-config.json
+agent/.env
+site/app-password.txt
