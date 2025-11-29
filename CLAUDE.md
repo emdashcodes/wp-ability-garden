@@ -102,7 +102,9 @@ mcp__puppeteer__puppeteer_type → Send messages
 
 1. Activate the skill: `Skill("wordpress-ability-api")`
 2. Use the scaffolding script or templates
-3. Register in wp-ability-toolkit
+3. Register in the `garden-abilities` plugin:
+   - **PHP**: `wp-content/plugins/garden-abilities/includes/abilities/`
+   - **JS**: `wp-content/plugins/garden-abilities/src/abilities/` (then rebuild)
 4. Test via the chat widget
 5. Add to `site/component_log.json`
 6. Document in your session post
