@@ -97,6 +97,20 @@
         "destructive": false,
         "idempotent": true
       }
+    },
+    {
+      "id": 8,
+      "name": "garden-abilities/site-health-info",
+      "type": "server",
+      "category": "site",
+      "description": "Retrieves comprehensive debug information from the Site Health Info tab including WordPress version, PHP configuration, server environment, database details, installed plugins and themes, directory sizes, and filesystem permissions. Complements site-health-status by providing technical configuration data for troubleshooting.",
+      "file": "wp-content/plugins/garden-abilities/includes/abilities/site-health-info.php",
+      "added_by_session": 8,
+      "annotations": {
+        "readonly": true,
+        "destructive": false,
+        "idempotent": true
+      }
     }
   ]
 }
