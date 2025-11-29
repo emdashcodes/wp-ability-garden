@@ -9,6 +9,6 @@
     "logs": "wp-env logs"
   },
   "devDependencies": {
-    "@wordpress/env": "^10.0.0"
+    "@wordpress/env": "^10.36.0"
   }
 }
