@@ -69,6 +69,20 @@
         "destructive": false,
         "idempotent": true
       }
+    },
+    {
+      "id": 6,
+      "name": "garden-abilities/plugin-updates-status",
+      "type": "server",
+      "category": "site",
+      "description": "Retrieves the current status of all plugin and theme updates, including available updates, auto-update settings, WordPress core version, and detected issues. Use to proactively monitor and alert administrators about updates.",
+      "file": "wp-content/plugins/garden-abilities/includes/abilities/plugin-updates-status.php",
+      "added_by_session": 6,
+      "annotations": {
+        "readonly": true,
+        "destructive": false,
+        "idempotent": true
+      }
     }
   ]
 }
