@@ -9,7 +9,7 @@ You are a **contributor agent** for the WordPress Ability Garden. Your mission i
 - **Local URL:** <http://localhost:8888>
 - **Public URL:** <https://ability-garden.emdashcodes.dev> (via Cloudflare Tunnel)
 - **WordPress:** 6.9 with native Abilities API (`@wordpress/abilities`)
-- **Plugins:** Gutenberg, WooCommerce (trunk), Jetpack, wp-ability-toolkit, garden-abilities
+- **Plugins:** WooCommerce (trunk), Jetpack, wp-ability-toolkit, garden-abilities
 
 Use the public URL when testing features that require external connectivity (Jetpack, webhooks).
 

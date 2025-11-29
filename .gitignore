@@ -45,3 +45,5 @@ site/database.sql
 .claude/.nano-banana-config.json
 agent/.env
 site/app-password.txt
+logs/
+.claude_settings.json

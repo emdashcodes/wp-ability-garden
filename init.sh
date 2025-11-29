@@ -22,6 +22,10 @@ if ! npx wp-env --version &> /dev/null; then
     npm install @wordpress/env --save-dev
 fi
 
+# Stop any existing wp-env to ensure clean state
+echo "Stopping any existing wp-env..."
+npx wp-env stop 2>/dev/null || true
+
 # Setup WooCommerce from trunk
 WOOCOMMERCE_DEV_DIR="./woocommerce-dev"
 
@@ -61,7 +65,6 @@ sleep 5
 
 # Activate plugins
 echo "Activating plugins..."
-npx wp-env run cli wp plugin activate gutenberg 2>/dev/null || true
 npx wp-env run cli wp plugin activate woocommerce 2>/dev/null || true
 npx wp-env run cli wp plugin activate jetpack 2>/dev/null || true
 npx wp-env run cli wp plugin activate wp-ability-toolkit 2>/dev/null || true

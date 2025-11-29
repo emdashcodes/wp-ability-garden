@@ -2,7 +2,6 @@
   "core": "WordPress/WordPress#6.9-branch",
   "phpVersion": "8.2",
   "plugins": [
-    "https://downloads.wordpress.org/plugin/gutenberg.latest-stable.zip",
     "./woocommerce-dev/plugins/woocommerce",
     "https://downloads.wordpress.org/plugin/jetpack.latest-stable.zip",
     "./wp-content/plugins/wp-ability-toolkit",
