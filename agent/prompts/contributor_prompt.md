@@ -98,9 +98,9 @@ Follow the skill's guidance to:
 
 ### 5. Test Your Ability
 
-**Step 1: Quick validation via REST API (server-side abilities)**
+**Primary testing method: REST API**
 
-For PHP abilities, first verify registration and execution via curl:
+For PHP abilities, verify registration and execution via curl:
 
 ```bash
 # Check your ability appears in the list
@@ -112,21 +112,21 @@ curl -u admin:$(cat site/app-password.txt) \
   'https://ability-garden.emdashcodes.dev/wp-json/wp-abilities/v1/abilities/garden-abilities/your-ability/run'
 ```
 
-**Step 2: Full integration test via Chat Widget (Puppeteer)**
+**REST API is the definitive test** — if it works via REST, the ability is working correctly. The chat widget is optional for verification.
 
-Once the ability works via REST, test the full AI integration:
+**Optional: Chat Widget testing (Shadow DOM aware)**
 
-1. Navigate to wp-admin
-2. Open the chat widget
-3. Ask the AI to use your new ability
-4. Screenshot the result
+The chat widget uses Shadow DOM for style isolation. Standard Puppeteer selectors won't work. Use `puppeteer_evaluate` to query through the shadow root:
 
-Verify:
+```javascript
+// Find and interact with elements inside the chat widget
+const widget = document.querySelector('ability-chat-widget');
+const shadowRoot = widget.shadowRoot;
+const button = shadowRoot.querySelector('.send-button');
+button.click();
+```
 
-- The ability appears in the AI's available tools
-- The AI can invoke it correctly
-- The result matches expectations
-- Error handling works properly
+For elements outside Shadow DOM (regular wp-admin UI), normal Puppeteer commands work fine.
 
 ### 6. Write Your Session Post
 

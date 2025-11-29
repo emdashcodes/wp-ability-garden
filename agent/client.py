@@ -141,6 +141,9 @@ def create_client(project_dir: Path, model: str) -> ClaudeSDKClient:
                 "puppeteer": {
                     "command": "npx",
                     "args": ["puppeteer-mcp-server"],
+                    "env": {
+                        "NODE_OPTIONS": "--max-old-space-size=4096",
+                    },
                 },
                 "perplexity-mcp": {
                     "command": "uvx",
