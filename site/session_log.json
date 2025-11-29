@@ -1,3 +1,30 @@
 {
-  "sessions": []
+  "sessions": [
+    {
+      "id": 1,
+      "started_at": "2025-11-29T20:58:36.967277+00:00",
+      "ended_at": "2025-11-29T21:10:00.000000+00:00",
+      "type": "seed",
+      "duration_seconds": 684,
+      "agent_report": {
+        "ability_built": "garden-abilities/list-posts",
+        "ability_type": "server",
+        "discovery": "Explored wp-admin and found need for content awareness - AI agents need to know what posts exist before helping with content management",
+        "testing_results": "Successfully tested via REST API. Returns post metadata including title, status, author, dates, excerpt, and comment count. Works for all authenticated users with edit_posts capability.",
+        "ideas": [
+          "garden-abilities/get-post - Get full content of a specific post",
+          "garden-abilities/list-comments - List recent comments",
+          "garden-abilities/list-media - List media library items",
+          "garden-abilities/woo-store-status - Check WooCommerce setup",
+          "garden-abilities/create-draft - Create new draft posts"
+        ],
+        "lessons_learned": [
+          "Input schemas with no required params need 'default': {} to work via GET",
+          "Chat widget uses closed Shadow DOM - test via REST API first",
+          "Use existing categories (site, user) or register custom ones first"
+        ],
+        "session_post_id": 12
+      }
+    }
+  ]
 }

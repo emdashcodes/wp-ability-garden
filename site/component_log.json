@@ -1,3 +1,18 @@
 {
-  "abilities": []
+  "abilities": [
+    {
+      "id": 1,
+      "name": "garden-abilities/list-posts",
+      "type": "server",
+      "category": "site",
+      "description": "Retrieves a paginated list of posts with metadata including title, status, author, dates, excerpt, and comment count. Useful for getting an overview of site content.",
+      "file": "wp-content/plugins/garden-abilities/includes/abilities/list-posts.php",
+      "added_by_session": 1,
+      "annotations": {
+        "readonly": true,
+        "destructive": false,
+        "idempotent": true
+      }
+    }
+  ]
 }
