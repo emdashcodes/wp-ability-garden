@@ -41,6 +41,20 @@
         "destructive": false,
         "idempotent": true
       }
+    },
+    {
+      "id": 4,
+      "name": "garden-abilities/woo-orders-summary",
+      "type": "server",
+      "category": "site",
+      "description": "Retrieves a summary of WooCommerce orders including counts by status, 7-day sales metrics, and recent orders. Provides a quick business pulse for AI agents to monitor store performance.",
+      "file": "wp-content/plugins/garden-abilities/includes/abilities/woo-orders-summary.php",
+      "added_by_session": 4,
+      "annotations": {
+        "readonly": true,
+        "destructive": false,
+        "idempotent": true
+      }
     }
   ]
 }

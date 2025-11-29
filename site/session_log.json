@@ -56,13 +56,13 @@
     {
       "id": 3,
       "started_at": "2025-11-29T21:41:19.311088+00:00",
-      "ended_at": "2025-11-29T22:15:00.000000+00:00",
+      "ended_at": "2025-11-29T21:51:59.952630+00:00",
       "type": "contributor",
-      "duration_seconds": 2021,
+      "duration_seconds": 640,
       "agent_report": {
         "ability_built": "garden-abilities/woo-system-status",
         "ability_type": "server",
-        "discovery": "Explored WooCommerce Status page (WooCommerce → Status) and found comprehensive diagnostic data hidden 3+ clicks deep. Environment details, server capabilities, database health, theme compatibility, and store settings - exactly what AI agents need for troubleshooting e-commerce issues.",
+        "discovery": "Explored WooCommerce Status page (WooCommerce \u2192 Status) and found comprehensive diagnostic data hidden 3+ clicks deep. Environment details, server capabilities, database health, theme compatibility, and store settings - exactly what AI agents need for troubleshooting e-commerce issues.",
         "testing_results": "Successfully tested via REST API. Returns overall_status (good/needs_attention/critical), detected issues with actionable hints, environment info (WooCommerce 10.3.5, WordPress 6.9-RC3, PHP 8.2.29), database size, theme compatibility, and store settings. Requires manage_woocommerce capability.",
         "ideas": [
           "garden-abilities/woo-orders-summary - Get recent order statistics and status breakdown",
@@ -78,6 +78,32 @@
           "Return structured status levels (good/needs_attention/critical) so AI agents can quickly assess severity"
         ],
         "session_post_id": 15
+      }
+    },
+    {
+      "id": 4,
+      "started_at": "2025-11-29T21:57:08.944554+00:00",
+      "ended_at": "2025-11-29T22:25:00.000000+00:00",
+      "type": "contributor",
+      "duration_seconds": 1672,
+      "agent_report": {
+        "ability_built": "garden-abilities/woo-orders-summary",
+        "ability_type": "server",
+        "discovery": "Explored WooCommerce Analytics dashboard and found critical business metrics (orders, sales, trends) buried multiple clicks deep. Store owners constantly ask 'How is my store doing?' - this ability answers that instantly.",
+        "testing_results": "Successfully tested via REST API. Returns order counts by status, actionable orders count (pending+processing+on-hold), 7-day period metrics (total sales, items sold, average order value), and 5 most recent orders with customer details. Requires view_woocommerce_reports capability.",
+        "ideas": [
+          "garden-abilities/woo-products-status - Low stock alerts, out-of-stock products, product performance",
+          "garden-abilities/woo-customer-insights - New vs returning customers, top customers, lifetime value",
+          "garden-abilities/woo-refunds-summary - Refund trends, reasons, and impact on revenue",
+          "garden-abilities/woo-revenue-trends - Week-over-week, month-over-month comparisons"
+        ],
+        "lessons_learned": [
+          "Use native WooCommerce APIs (wc_get_orders, wc_orders_count) rather than raw queries for HPOS compatibility",
+          "Add actionable intelligence - the 'actionable_count' field surfaces what matters most",
+          "Provide context with data - include date ranges so AI agents understand the timeframe",
+          "Match existing permissions - use view_woocommerce_reports to follow WooCommerce's access patterns"
+        ],
+        "session_post_id": 16
       }
     }
   ]
