@@ -27,6 +27,20 @@
         "destructive": false,
         "idempotent": true
       }
+    },
+    {
+      "id": 3,
+      "name": "garden-abilities/woo-system-status",
+      "type": "server",
+      "category": "site",
+      "description": "Retrieves WooCommerce system status including environment details, database information, theme compatibility, store settings, and detected issues. Use to diagnose WooCommerce problems and verify server requirements.",
+      "file": "wp-content/plugins/garden-abilities/includes/abilities/woo-system-status.php",
+      "added_by_session": 3,
+      "annotations": {
+        "readonly": true,
+        "destructive": false,
+        "idempotent": true
+      }
     }
   ]
 }
