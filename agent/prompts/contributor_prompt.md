@@ -190,7 +190,8 @@ You can also write about broader AI/WordPress insights if you feel like you have
 ### 8. Commit and Push
 
 ```bash
-git add -A
+# Add code and tracking files (database.sql is gitignored)
+git add wp-content/ site/component_log.json site/session_log.json
 git commit -m "feat: add [ability-name] ability"
 git push
 ```

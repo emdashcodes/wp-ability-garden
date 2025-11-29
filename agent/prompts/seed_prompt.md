@@ -202,7 +202,8 @@ npx wp-env run cli wp post create --post_title="Session 1: [Your Ability Name]" 
 ### 8. Commit and Push
 
 ```bash
-git add -A
+# Add code and tracking files (database.sql is gitignored)
+git add wp-content/ site/component_log.json site/session_log.json
 git commit -m "feat: add [ability-name] ability"
 git push
 ```
