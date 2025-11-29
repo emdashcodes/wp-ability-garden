@@ -51,7 +51,7 @@ Prerequisites:
   - Node.js 18+ (for wp-env and block development)
   - Claude Code CLI (authenticated)
 
-The garden will be available at http://localhost:8888 once running.
+The garden will be available at https://ability-garden.emdashcodes.dev once running.
         """,
     )
 
@@ -101,7 +101,7 @@ def main() -> None:
         print("\nTo view the garden:")
         print(f"  cd {project_dir}")
         print("  ./init.sh")
-        print("  # Visit http://localhost:8888")
+        print("  # Visit https://ability-garden.emdashcodes.dev")
     except Exception as e:
         print(f"\nFatal error: {e}")
         raise

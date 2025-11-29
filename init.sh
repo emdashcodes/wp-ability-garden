@@ -63,6 +63,11 @@ npx wp-env start
 echo "Waiting for WordPress to be ready..."
 sleep 5
 
+# Set site URLs for Cloudflare tunnel
+echo "Setting site URLs..."
+npx wp-env run cli wp config set WP_SITEURL https://ability-garden.emdashcodes.dev
+npx wp-env run cli wp config set WP_HOME https://ability-garden.emdashcodes.dev
+
 # Activate plugins
 echo "Activating plugins..."
 npx wp-env run cli wp plugin activate woocommerce 2>/dev/null || true
@@ -107,15 +112,10 @@ echo "=========================================="
 echo "  Environment Ready!"
 echo "=========================================="
 echo ""
-echo "  Local:     http://localhost:8888"
-echo "  Public:    https://ability-garden.emdashcodes.dev"
+echo "  Site:      https://ability-garden.emdashcodes.dev"
 echo "  Admin:     https://ability-garden.emdashcodes.dev/wp-admin/"
 echo "  Username:  admin"
 echo "  Password:  password"
-echo ""
-echo "  REST API Testing (use public URL for HTTPS/app passwords):"
-echo "    curl -u admin:\$(cat site/app-password.txt) \\"
-echo "      'https://ability-garden.emdashcodes.dev/wp-json/wp-abilities/v1/abilities'"
 echo ""
 echo "  Start tunnel: cloudflared tunnel run ability-garden"
 echo "=========================================="

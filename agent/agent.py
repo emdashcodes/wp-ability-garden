@@ -279,7 +279,7 @@ async def run_autonomous_agent(
     print("-" * 70)
     print(f"\n  cd {project_dir.resolve()}")
     print("  ./init.sh")
-    print("  # Then visit http://localhost:8888")
+    print("  # Then visit https://ability-garden.emdashcodes.dev")
     print("-" * 70)
 
     print("\nDone!")
