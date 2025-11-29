@@ -117,22 +117,23 @@ class Plugin {
 	/**
 	 * Register the wp-abilities script
 	 *
-	 * Core 6.9 provides the PHP Abilities API but doesn't register
-	 * the JavaScript assets yet. This bridges the gap by registering
-	 * the bundled @wordpress/abilities package as 'wp-abilities'.
+	 * Uses the pre-built JavaScript assets from the wordpress/abilities-api
+	 * Composer package (v0.4.0). This provides the client-side Abilities API
+	 * with proper integration with WordPress's data store.
 	 */
 	public function register_abilities_script() {
-		$asset_path = dirname( $this->plugin_file ) . '/build/wp-abilities/index.asset.php';
-		$asset      = file_exists( $asset_path )
+		$vendor_path = dirname( $this->plugin_file ) . '/vendor/wordpress/abilities-api/packages/client/build/';
+		$asset_path  = $vendor_path . 'index.asset.php';
+		$asset       = file_exists( $asset_path )
 			? require $asset_path
 			: array(
-				'dependencies' => array( 'wp-api-fetch', 'wp-data', 'wp-i18n' ),
+				'dependencies' => array( 'wp-api-fetch', 'wp-core-data', 'wp-data', 'wp-i18n', 'wp-url' ),
 				'version'      => self::VERSION,
 			);
 
 		wp_register_script(
 			'wp-abilities',
-			plugins_url( 'build/wp-abilities/index.js', $this->plugin_file ),
+			plugins_url( 'vendor/wordpress/abilities-api/packages/client/build/index.js', $this->plugin_file ),
 			$asset['dependencies'],
 			$asset['version'],
 			true

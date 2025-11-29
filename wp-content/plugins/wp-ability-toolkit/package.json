@@ -23,6 +23,7 @@
 		"@wordpress/a11y": "^4.33.0",
 		"@wordpress/abilities": "^0.2.0",
 		"@wordpress/components": "^30.6.0",
+		"@wordpress/data": "^10.36.0",
 		"@wordpress/element": "^6.33.0",
 		"@wordpress/i18n": "^6.6.0",
 		"@wordpress/icons": "^11.0.0",

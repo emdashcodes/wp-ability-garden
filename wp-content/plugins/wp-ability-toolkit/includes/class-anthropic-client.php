@@ -118,14 +118,9 @@ class Anthropic_Client extends AI_Client {
 			}
 		}
 
-		// Enable extended thinking for supported models.
-		// Extended thinking is supported on Claude 3.5 Sonnet, Claude 3 Opus, and later models.
-		// Match various model naming patterns: claude-3-*, claude-4-*, claude-sonnet-*, claude-opus-*.
-		$supports_thinking = strpos( $model, 'claude-3' ) !== false
-			|| strpos( $model, 'claude-4' ) !== false
-			|| strpos( $model, 'claude-sonnet' ) !== false
-			|| strpos( $model, 'claude-opus' ) !== false;
-		error_log( "WP Ability Toolkit: Model=$model, supports_thinking=" . ( $supports_thinking ? 'true' : 'false' ) );
+		// Extended thinking disabled for now - requires complex message history handling.
+		// TODO: Re-enable with proper thinking block preservation in conversation history.
+		$supports_thinking = false;
 
 		// Set max_tokens based on thinking support.
 		// When thinking is enabled, max_tokens must be >= budget_tokens.

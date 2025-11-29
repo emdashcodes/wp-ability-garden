@@ -12,31 +12,14 @@ const pluginsWithoutDep = defaultConfig.plugins.filter(
 );
 
 /**
- * Config for wp-abilities script (bundles @wordpress/abilities)
- * This creates the script that other entries will use as external
+ * Main webpack config
+ *
+ * Uses the pre-built wp-abilities script from the wordpress/abilities-api
+ * Composer package (v0.4.0) - see vendor/wordpress/abilities-api/packages/client/build/
+ *
+ * @wordpress/abilities is externalized to wp.abilities global
  */
-const abilitiesConfig = {
-	...defaultConfig,
-	entry: {
-		'wp-abilities/index': path.resolve(__dirname, 'src/abilities-api/index.js'),
-	},
-	output: {
-		path: path.resolve(__dirname, 'build'),
-		filename: '[name].js',
-	},
-	// No externals - bundle @wordpress/abilities and its deps
-	externals: {},
-	plugins: [
-		...pluginsWithoutDep,
-		// Don't use DependencyExtractionWebpackPlugin for abilities bundle
-		// since we want to bundle everything including @wordpress/abilities
-	],
-};
-
-/**
- * Config for main entries (externalizes @wordpress/abilities to wp.abilities)
- */
-const mainConfig = {
+module.exports = {
 	...defaultConfig,
 	entry: {
 		'chat-widget/index': path.resolve(__dirname, 'src/chat-widget/index.tsx'),
@@ -72,6 +55,3 @@ const mainConfig = {
 		}),
 	],
 };
-
-// Export both configs for webpack to process
-module.exports = [abilitiesConfig, mainConfig];
