@@ -1,15 +1,11 @@
 {
   "core": "WordPress/WordPress#6.9-branch",
   "phpVersion": "8.2",
-  "plugins": [
-    "./woocommerce-dev/plugins/woocommerce",
-    "https://downloads.wordpress.org/plugin/jetpack.latest-stable.zip",
-    "./wp-content/plugins/wp-ability-toolkit",
-    "./wp-content/plugins/garden-abilities"
-  ],
+  "plugins": [],
   "config": {
     "WP_DEBUG": true,
     "WP_DEBUG_LOG": true,
+    "WP_DEBUG_DISPLAY": false,
     "SCRIPT_DEBUG": true
   },
   "mappings": {

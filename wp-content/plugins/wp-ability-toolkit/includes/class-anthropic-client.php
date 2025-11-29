@@ -118,12 +118,14 @@ class Anthropic_Client extends AI_Client {
 			}
 		}
 
-		// Extended thinking support.
-		// NOTE: Extended thinking requires the frontend to preserve thinking blocks in conversation
-		// history. Until that's implemented, we disable extended thinking to avoid API errors.
-		// TODO: Enable once frontend stores thinking content in message history.
-		$supports_thinking = false;
-		error_log( "WP Ability Toolkit: Model=$model, extended_thinking=disabled (frontend support needed)" );
+		// Enable extended thinking for supported models.
+		// Extended thinking is supported on Claude 3.5 Sonnet, Claude 3 Opus, and later models.
+		// Match various model naming patterns: claude-3-*, claude-4-*, claude-sonnet-*, claude-opus-*.
+		$supports_thinking = strpos( $model, 'claude-3' ) !== false
+			|| strpos( $model, 'claude-4' ) !== false
+			|| strpos( $model, 'claude-sonnet' ) !== false
+			|| strpos( $model, 'claude-opus' ) !== false;
+		error_log( "WP Ability Toolkit: Model=$model, supports_thinking=" . ( $supports_thinking ? 'true' : 'false' ) );
 
 		// Set max_tokens based on thinking support.
 		// When thinking is enabled, max_tokens must be >= budget_tokens.
@@ -239,14 +241,6 @@ class Anthropic_Client extends AI_Client {
 			// Handle assistant messages with tool calls.
 			if ( 'assistant' === $role && isset( $message['tool_calls'] ) ) {
 				$content = array();
-
-				// Add thinking block first if present (required by Anthropic API when thinking is enabled).
-				if ( ! empty( $message['thinking'] ) ) {
-					$content[] = array(
-						'type'     => 'thinking',
-						'thinking' => $message['thinking'],
-					);
-				}
 
 				// Add text content if present.
 				if ( ! empty( $message['content'] ) ) {
@@ -573,16 +567,11 @@ class Anthropic_Client extends AI_Client {
 
 		// All tools are server-side, execute them.
 		// First, add the assistant message with tool calls to the conversation.
-		// Include thinking content if it was collected (required by Anthropic API when thinking is enabled).
-		$assistant_message = array(
+		$messages[] = array(
 			'role'       => 'assistant',
 			'content'    => null,
 			'tool_calls' => $tool_calls,
 		);
-		if ( ! empty( $this->thinking_content ) ) {
-			$assistant_message['thinking'] = $this->thinking_content;
-		}
-		$messages[] = $assistant_message;
 
 		// Execute each tool and add results.
 		foreach ( $tool_calls as $tool_call ) {

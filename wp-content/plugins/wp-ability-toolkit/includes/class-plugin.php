@@ -90,10 +90,8 @@ class Plugin {
 		// Add settings page.
 		add_action( 'admin_menu', array( $this, 'add_settings_page' ) );
 
-		// Register Abilities API assets (when installed via Composer).
-		add_action( 'init', array( 'WP_Abilities_Assets_Init', 'register_assets' ) );
-		add_action( 'admin_enqueue_scripts', array( 'WP_Abilities_Assets_Init', 'admin_enqueue_scripts' ) );
-
+		// Register wp-abilities script from our build (chat widget depends on it).
+		add_action( 'init', array( $this, 'register_abilities_script' ) );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_chat_widget' ), 20 );
 
@@ -300,8 +298,10 @@ class Plugin {
 	public function register_test_abilities() {
 		// Load server-side abilities from the abilities folder.
 		require_once dirname( $this->plugin_file ) . '/includes/abilities/create-ability.php';
+		require_once dirname( $this->plugin_file ) . '/includes/abilities/content-review.php';
 
 		// Register server-side abilities.
 		\WP_Ability_Toolkit\Abilities\register_create_ability();
+		\WP_Ability_Toolkit\Abilities\register_content_review_ability();
 	}
 }

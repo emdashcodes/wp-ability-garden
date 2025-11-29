@@ -24,11 +24,12 @@ wp-content/plugins/wp-ability-toolkit/build/
 wp-content/plugins/garden-abilities/build/
 wp-content/plugins/garden-abilities/node_modules/
 
-# External plugins (pulled by wp-env)
+# External plugins (installed separately)
 wp-content/plugins/gutenberg/
 wp-content/plugins/jetpack/
+wp-content/plugins/woocommerce/
 
-# WooCommerce dev build (cloned and built from trunk)
+# WooCommerce dev build
 woocommerce-dev/
 
 # Uploads (generated content)
