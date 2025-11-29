@@ -1,0 +1,33 @@
+flowchart TB
+    subgraph WP["WordPress Admin"]
+        UI["Scheduled Actions Page<br/>(Tools → Scheduled Actions)"]
+        AS["Action Scheduler<br/>(WooCommerce)"]
+    end
+
+    subgraph Ability["garden-abilities/scheduled-actions"]
+        API["REST API Endpoint"]
+        CB["Callback Function"]
+        CB --> Q1["Query Pending Actions"]
+        CB --> Q2["Query Failed Actions"]
+        CB --> Q3["Query Completed Actions"]
+        CB --> Q4["Detect Issues"]
+    end
+
+    subgraph Output["Structured Output"]
+        S["Summary<br/>pending, failed, complete"]
+        P["Pending Actions<br/>with schedules"]
+        I["Issues<br/>with recommendations"]
+    end
+
+    AS --> CB
+    API --> CB
+    CB --> S
+    CB --> P
+    CB --> I
+
+    AI["AI Agent"] --> API
+    Output --> AI
+
+    style AS fill:#96588a,color:#fff
+    style API fill:#0073aa,color:#fff
+    style AI fill:#3b82f6,color:#fff

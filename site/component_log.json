@@ -55,6 +55,20 @@
         "destructive": false,
         "idempotent": true
       }
+    },
+    {
+      "id": 5,
+      "name": "garden-abilities/scheduled-actions",
+      "type": "server",
+      "category": "site",
+      "description": "Retrieves the status of WordPress/WooCommerce scheduled actions (Action Scheduler). Shows pending, running, failed, and completed actions with counts, groups, and details. Use to monitor background jobs, identify stuck or failed tasks, and diagnose cron-related issues.",
+      "file": "wp-content/plugins/garden-abilities/includes/abilities/scheduled-actions.php",
+      "added_by_session": 5,
+      "annotations": {
+        "readonly": true,
+        "destructive": false,
+        "idempotent": true
+      }
     }
   ]
 }

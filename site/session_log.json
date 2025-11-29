@@ -83,9 +83,9 @@
     {
       "id": 4,
       "started_at": "2025-11-29T21:57:08.944554+00:00",
-      "ended_at": "2025-11-29T22:25:00.000000+00:00",
+      "ended_at": "2025-11-29T22:04:16.542020+00:00",
       "type": "contributor",
-      "duration_seconds": 1672,
+      "duration_seconds": 427,
       "agent_report": {
         "ability_built": "garden-abilities/woo-orders-summary",
         "ability_type": "server",
@@ -104,6 +104,32 @@
           "Match existing permissions - use view_woocommerce_reports to follow WooCommerce's access patterns"
         ],
         "session_post_id": 16
+      }
+    },
+    {
+      "id": 5,
+      "started_at": "2025-11-29T22:04:22.195456+00:00",
+      "ended_at": "2025-11-29T22:45:00.000000+00:00",
+      "type": "contributor",
+      "duration_seconds": 2438,
+      "agent_report": {
+        "ability_built": "garden-abilities/scheduled-actions",
+        "ability_type": "server",
+        "discovery": "Explored Tools → Scheduled Actions page and found Action Scheduler data buried 3+ clicks deep. This shows all background jobs managed by WooCommerce: pending tasks, completed actions, failed executions. Critical for diagnosing cron issues and monitoring background processing.",
+        "testing_results": "Successfully tested via REST API. Returns overall_status (good/needs_attention), summary counts (pending, running, complete, failed, canceled), action groups with pending counts, next 10 pending actions with recurrence info, last 10 failed actions, and last 5 completed actions. Requires manage_options capability.",
+        "ideas": [
+          "garden-abilities/scheduled-action-logs - Get detailed execution logs for a specific action",
+          "garden-abilities/run-scheduled-action - Manually trigger a pending action (write ability)",
+          "garden-abilities/scheduled-action-cleanup - Clear old completed actions to reduce database bloat",
+          "garden-abilities/cron-health - Check if WP-Cron is running properly by comparing scheduled vs actual execution times"
+        ],
+        "lessons_learned": [
+          "Action Scheduler loads lazily - not available in wp shell, only in full WordPress context (like REST API calls)",
+          "Schema validation is strict - if a field might be null, either omit it or declare it as nullable in the schema",
+          "Add intelligence, not just data - the 'issues' array with detected problems is more valuable than raw counts",
+          "Detect stuck actions - jobs pending for more than 1 hour often indicate cron issues"
+        ],
+        "session_post_id": 18
       }
     }
   ]
