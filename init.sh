@@ -70,6 +70,11 @@ npx wp-env run cli wp plugin activate jetpack 2>/dev/null || true
 npx wp-env run cli wp plugin activate wp-ability-toolkit 2>/dev/null || true
 npx wp-env run cli wp plugin activate garden-abilities 2>/dev/null || true
 
+# Set site URL to tunnel domain
+echo "Setting site URL..."
+npx wp-env run cli wp option update siteurl 'https://ability-garden.emdashcodes.dev' 2>/dev/null || true
+npx wp-env run cli wp option update home 'https://ability-garden.emdashcodes.dev' 2>/dev/null || true
+
 # Set up pretty permalinks
 echo "Configuring permalinks..."
 npx wp-env run cli -- bash -c 'cat > /var/www/html/.htaccess << "HTACCESS"
